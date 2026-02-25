@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.3" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
+		<PackageReference Include="Npgsql" Version="8.0.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Atrox.Vectra.Authentication.Api.CrossCutting\Atrox.Vectra.Authentication.Api.CrossCutting.csproj" />
+		<ProjectReference Include="..\Atrox.Vectra.Authentication.Api.DataAccess.Contracts\Atrox.Vectra.Authentication.Api.DataAccess.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

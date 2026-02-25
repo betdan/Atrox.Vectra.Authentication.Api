@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option csharp_namespace = "Atrox.Vectra.Authentication.Api.Transports.Grpc";
+
+package authentication;
+
+service AuthenticationExecution {
+  rpc Authenticate (AuthRequestGrpc) returns (AuthResponseGrpc);
+  rpc GetJwks (JwksRequestGrpc) returns (JwksResponseGrpc);
+}
+
+message AuthRequestGrpc {
+  string apiKey = 1;
+}
+
+message AuthResponseGrpc {
+  bool success = 1;
+  string accessToken = 2;
+  string tokenType = 3;
+  string expiresAtUtc = 4;
+  string error = 5;
+}
+
+message JwksRequestGrpc {}
+
+message JwksKeyGrpc {
+  string kty = 1;
+  string use = 2;
+  string alg = 3;
+  string kid = 4;
+  string n = 5;
+  string e = 6;
+}
+
+message JwksResponseGrpc {
+  repeated JwksKeyGrpc keys = 1;
+}

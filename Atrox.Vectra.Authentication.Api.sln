@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atrox.Vectra.Authentication.Api", "Atrox.Vectra.Authentication.Api\Atrox.Vectra.Authentication.Api.csproj", "{AB0EDD4B-8E75-41F0-9F14-42C23CA07D5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Services", "1.1 Services", "{54AF5FD2-2871-4D52-AF69-170B31E208EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 Application", "1.2 Application", "{54493AED-E1A7-4F10-9081-E161D3A7CEC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.3 Business", "1.3 Business", "{8864D303-42AF-4ECA-99F2-188CA93569F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.4 DataAccess", "1.4 DataAccess", "{4B6E9ECB-8A79-4F79-995A-EB95113B7A4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5 Cross-Cutting", "1.5 Cross-Cutting", "{F7D6EF85-85B9-44A6-8EEE-8D0DE387DD35}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atrox.Vectra.Authentication.Api.Application", "Atrox.Vectra.Authentication.Api.Application\Atrox.Vectra.Authentication.Api.Application.csproj", "{7B42D4A6-3575-45D9-BBE0-BFB4EBB707FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atrox.Vectra.Authentication.Api.Application.Contracts", "Atrox.Vectra.Authentication.Api.Application.Contracts\Atrox.Vectra.Authentication.Api.Application.Contracts.csproj", "{0B765E67-D84E-4903-BAD2-DBF12B9C956F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atrox.Vectra.Authentication.Api.Business", "Atrox.Vectra.Authentication.Api.Business\Atrox.Vectra.Authentication.Api.Business.csproj", "{404EDB01-C0BC-45E8-BD38-0F72ED7A2770}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atrox.Vectra.Authentication.Api.DataAccess", "Atrox.Vectra.Authentication.Api.DataAccess\Atrox.Vectra.Authentication.Api.DataAccess.csproj", "{51403B3E-236F-4DF6-BE30-D7FE3D27C4E9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atrox.Vectra.Authentication.Api.DataAccess.Contracts", "Atrox.Vectra.Authentication.Api.DataAccess.Contracts\Atrox.Vectra.Authentication.Api.DataAccess.Contracts.csproj", "{9082073D-782C-4AE2-936A-DBD931D4E39F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atrox.Vectra.Authentication.Api.CrossCutting", "Atrox.Vectra.Authentication.Api.CrossCutting\Atrox.Vectra.Authentication.Api.CrossCutting.csproj", "{FDF68A63-18C2-4BA6-9C25-CA54AB808E6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atrox.Vectra.Authentication.Api.Tests", "Atrox.Vectra.Authentication.Api.Tests\Atrox.Vectra.Authentication.Api.Tests.csproj", "{7E9D97F8-D5D9-4EE2-8566-F9A026A94A78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB0EDD4B-8E75-41F0-9F14-42C23CA07D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB0EDD4B-8E75-41F0-9F14-42C23CA07D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB0EDD4B-8E75-41F0-9F14-42C23CA07D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB0EDD4B-8E75-41F0-9F14-42C23CA07D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B42D4A6-3575-45D9-BBE0-BFB4EBB707FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B42D4A6-3575-45D9-BBE0-BFB4EBB707FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B42D4A6-3575-45D9-BBE0-BFB4EBB707FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B42D4A6-3575-45D9-BBE0-BFB4EBB707FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B765E67-D84E-4903-BAD2-DBF12B9C956F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B765E67-D84E-4903-BAD2-DBF12B9C956F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B765E67-D84E-4903-BAD2-DBF12B9C956F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B765E67-D84E-4903-BAD2-DBF12B9C956F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{404EDB01-C0BC-45E8-BD38-0F72ED7A2770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{404EDB01-C0BC-45E8-BD38-0F72ED7A2770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{404EDB01-C0BC-45E8-BD38-0F72ED7A2770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{404EDB01-C0BC-45E8-BD38-0F72ED7A2770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51403B3E-236F-4DF6-BE30-D7FE3D27C4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51403B3E-236F-4DF6-BE30-D7FE3D27C4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51403B3E-236F-4DF6-BE30-D7FE3D27C4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51403B3E-236F-4DF6-BE30-D7FE3D27C4E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9082073D-782C-4AE2-936A-DBD931D4E39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9082073D-782C-4AE2-936A-DBD931D4E39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9082073D-782C-4AE2-936A-DBD931D4E39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9082073D-782C-4AE2-936A-DBD931D4E39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDF68A63-18C2-4BA6-9C25-CA54AB808E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF68A63-18C2-4BA6-9C25-CA54AB808E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF68A63-18C2-4BA6-9C25-CA54AB808E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF68A63-18C2-4BA6-9C25-CA54AB808E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9D97F8-D5D9-4EE2-8566-F9A026A94A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9D97F8-D5D9-4EE2-8566-F9A026A94A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9D97F8-D5D9-4EE2-8566-F9A026A94A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9D97F8-D5D9-4EE2-8566-F9A026A94A78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AB0EDD4B-8E75-41F0-9F14-42C23CA07D5C} = {54AF5FD2-2871-4D52-AF69-170B31E208EA}
+		{7B42D4A6-3575-45D9-BBE0-BFB4EBB707FB} = {54493AED-E1A7-4F10-9081-E161D3A7CEC9}
+		{0B765E67-D84E-4903-BAD2-DBF12B9C956F} = {54493AED-E1A7-4F10-9081-E161D3A7CEC9}
+		{404EDB01-C0BC-45E8-BD38-0F72ED7A2770} = {8864D303-42AF-4ECA-99F2-188CA93569F5}
+		{51403B3E-236F-4DF6-BE30-D7FE3D27C4E9} = {4B6E9ECB-8A79-4F79-995A-EB95113B7A4F}
+		{9082073D-782C-4AE2-936A-DBD931D4E39F} = {4B6E9ECB-8A79-4F79-995A-EB95113B7A4F}
+		{FDF68A63-18C2-4BA6-9C25-CA54AB808E6D} = {F7D6EF85-85B9-44A6-8EEE-8D0DE387DD35}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4839549-27DE-445C-99FE-23BD9FEBA1C7}
+	EndGlobalSection
+EndGlobal
