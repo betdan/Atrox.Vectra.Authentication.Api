@@ -4,6 +4,7 @@ using Atrox.Vectra.Authentication.Api.Transports.WebSocket;
 using CrossCutting.Config;
 using CrossCutting.Middlewares;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Prometheus;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -82,7 +83,9 @@ if (webSocketOptions.Enabled)
 }
 
 app.UseRouting();
+app.UseHttpMetrics();
 HealthCheckConfig.AddRegistration(app);
+app.MapMetrics();
 app.MapControllers();
 
 if (grpcOptions.Enabled)
