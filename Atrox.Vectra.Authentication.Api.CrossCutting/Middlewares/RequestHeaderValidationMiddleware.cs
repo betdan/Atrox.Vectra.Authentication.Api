@@ -52,7 +52,7 @@ public class RequestHeaderValidationMiddleware(RequestDelegate next)
                 new()
                 {
                     Code = "HEADER_VALIDATION_ERROR",
-                    Message = $"Missing required headers: {string.Join(", ", missingHeaders)}"
+                    Message = "Missing required headers"
                 }
             }
         };
