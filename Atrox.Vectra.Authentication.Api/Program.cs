@@ -8,6 +8,8 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var configuredUrls = (configuration["ASPNETCORE_URLS"] ?? string.Empty)
+    .Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 var grpcOptions = configuration.GetSection("Transports:Grpc").Get<GrpcTransportOptions>() ?? new GrpcTransportOptions();
 var webSocketOptions = configuration.GetSection("Transports:WebSocket").Get<WebSocketTransportOptions>() ?? new WebSocketTransportOptions();
@@ -24,7 +26,31 @@ if (grpcOptions.Enabled)
     builder.Services.AddGrpc();
     builder.WebHost.ConfigureKestrel(options =>
     {
-        options.ListenAnyIP(grpcOptions.Port, listenOptions => { listenOptions.Protocols = HttpProtocols.Http1AndHttp2; });
+        foreach (var url in configuredUrls)
+        {
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
+            {
+                continue;
+            }
+
+            if (uri.Scheme.Equals("https", StringComparison.OrdinalIgnoreCase))
+            {
+                options.ListenAnyIP(uri.Port, listenOptions =>
+                {
+                    listenOptions.UseHttps();
+                    listenOptions.Protocols = HttpProtocols.Http1;
+                });
+            }
+            else if (uri.Scheme.Equals("http", StringComparison.OrdinalIgnoreCase))
+            {
+                options.ListenAnyIP(uri.Port, listenOptions => { listenOptions.Protocols = HttpProtocols.Http1; });
+            }
+        }
+
+        if (!configuredUrls.Any(url => Uri.TryCreate(url, UriKind.Absolute, out var uri) && uri.Port == grpcOptions.Port))
+        {
+            options.ListenAnyIP(grpcOptions.Port, listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
+        }
     });
 }
 
@@ -35,9 +61,7 @@ builder.Services.RegisterHealthChecks();
 ServiceExtensions.RegisterSwagger(builder.Services);
 
 var app = builder.Build();
-var hasHttpsUrlConfigured = (configuration["ASPNETCORE_URLS"] ?? string.Empty)
-    .Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-    .Any(url => url.StartsWith("https://", StringComparison.OrdinalIgnoreCase));
+var hasHttpsUrlConfigured = configuredUrls.Any(url => url.StartsWith("https://", StringComparison.OrdinalIgnoreCase));
 
 if (hasHttpsUrlConfigured)
 {

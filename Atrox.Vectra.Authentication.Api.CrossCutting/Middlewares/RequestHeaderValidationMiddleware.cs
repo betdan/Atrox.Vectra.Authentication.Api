@@ -14,10 +14,16 @@ public class RequestHeaderValidationMiddleware(RequestDelegate next)
     };
 
     private readonly RequestDelegate _next = next ?? throw new ArgumentNullException(nameof(next));
+    private static readonly string[] ExcludedPathPrefixes =
+    {
+        "/health",
+        "/swagger",
+        "/.well-known"
+    };
 
     public async Task Invoke(HttpContext context)
     {
-        if (context.Request.Path.Equals("/health", StringComparison.OrdinalIgnoreCase))
+        if (IsExcludedPath(context.Request.Path))
         {
             await _next(context);
             return;
@@ -52,5 +58,11 @@ public class RequestHeaderValidationMiddleware(RequestDelegate next)
         };
 
         await context.Response.WriteAsJsonAsync(response);
+    }
+
+    private static bool IsExcludedPath(PathString requestPath)
+    {
+        var path = requestPath.Value ?? string.Empty;
+        return ExcludedPathPrefixes.Any(prefix => path.StartsWith(prefix, StringComparison.OrdinalIgnoreCase));
     }
 }
