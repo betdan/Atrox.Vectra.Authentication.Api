@@ -24,7 +24,7 @@ if (grpcOptions.Enabled)
     builder.Services.AddGrpc();
     builder.WebHost.ConfigureKestrel(options =>
     {
-        options.ListenAnyIP(grpcOptions.Port, listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
+        options.ListenAnyIP(grpcOptions.Port, listenOptions => { listenOptions.Protocols = HttpProtocols.Http1AndHttp2; });
     });
 }
 
