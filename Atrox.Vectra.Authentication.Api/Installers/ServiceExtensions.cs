@@ -6,9 +6,11 @@ using Atrox.Vectra.Authentication.Api.DataAccess.Connections;
 using Atrox.Vectra.Authentication.Api.DataAccess.Contracts.Connections;
 using Atrox.Vectra.Authentication.Api.DataAccess.Contracts.Repositories;
 using Atrox.Vectra.Authentication.Api.DataAccess.Repositories;
+using Atrox.Vectra.Authentication.Api.HealthChecks;
 using Atrox.Vectra.Authentication.Api.Transports.Amqp;
 using CrossCutting.Crypto;
 using MassTransit;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
 namespace Atrox.Vectra.Authentication.Api.Installers;
@@ -40,7 +42,8 @@ public static class ServiceExtensions
 
     public static void RegisterHealthChecks(this IServiceCollection services)
     {
-        services.AddHealthChecks();
+        services.AddHealthChecks()
+            .AddCheck<DatabaseHealthCheck>("database", failureStatus: HealthStatus.Unhealthy, tags: ["ready"]);
     }
 
     public static void RegisterMassTransit(this IServiceCollection services, IConfiguration configuration)

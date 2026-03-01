@@ -17,6 +17,7 @@ public class RequestHeaderValidationMiddleware(RequestDelegate next)
     private static readonly string[] ExcludedPathPrefixes =
     {
         "/health",
+        "/metrics",
         "/swagger",
         "/.well-known"
     };
