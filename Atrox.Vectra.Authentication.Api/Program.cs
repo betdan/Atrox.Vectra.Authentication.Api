@@ -35,7 +35,15 @@ builder.Services.RegisterHealthChecks();
 ServiceExtensions.RegisterSwagger(builder.Services);
 
 var app = builder.Build();
-app.UseHttpsRedirection();
+var hasHttpsUrlConfigured = (configuration["ASPNETCORE_URLS"] ?? string.Empty)
+    .Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    .Any(url => url.StartsWith("https://", StringComparison.OrdinalIgnoreCase));
+
+if (hasHttpsUrlConfigured)
+{
+    app.UseHttpsRedirection();
+}
+
 SwaggerConfig.AddRegistration(app);
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseMiddleware<RequestHeaderValidationMiddleware>();
