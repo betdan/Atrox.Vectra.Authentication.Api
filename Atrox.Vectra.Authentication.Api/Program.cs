@@ -52,6 +52,15 @@ if (grpcOptions.Enabled)
         {
             options.ListenAnyIP(grpcOptions.Port, listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
         }
+
+        if (grpcOptions.TlsPort > 0 && grpcOptions.TlsPort != grpcOptions.Port)
+        {
+            options.ListenAnyIP(grpcOptions.TlsPort, listenOptions =>
+            {
+                listenOptions.UseHttps();
+                listenOptions.Protocols = HttpProtocols.Http2;
+            });
+        }
     });
 }
 
@@ -62,13 +71,6 @@ builder.Services.RegisterHealthChecks();
 ServiceExtensions.RegisterSwagger(builder.Services);
 
 var app = builder.Build();
-var hasHttpsUrlConfigured = configuredUrls.Any(url => url.StartsWith("https://", StringComparison.OrdinalIgnoreCase));
-
-if (hasHttpsUrlConfigured)
-{
-    app.UseHttpsRedirection();
-}
-
 SwaggerConfig.AddRegistration(app);
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseMiddleware<RequestHeaderValidationMiddleware>();
