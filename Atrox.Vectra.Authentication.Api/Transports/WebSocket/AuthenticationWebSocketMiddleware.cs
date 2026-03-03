@@ -67,6 +67,7 @@ public class AuthenticationWebSocketMiddleware(RequestDelegate next, IServiceSco
     {
         try
         {
+            _logger.LogDebug("WebSocket auth request: {request}", requestPayload);
             var serializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var serviceRequest = JsonSerializer.Deserialize<ServiceRequest<AuthRequest>>(requestPayload, serializerOptions);
             var executionRequest = serviceRequest?.Body ?? JsonSerializer.Deserialize<AuthRequest>(requestPayload, serializerOptions) ?? new AuthRequest();
@@ -74,6 +75,7 @@ public class AuthenticationWebSocketMiddleware(RequestDelegate next, IServiceSco
             using var scope = _scopeFactory.CreateScope();
             var executionService = scope.ServiceProvider.GetRequiredService<IExecutionService>();
             var response = await executionService.AuthenticateAsync(executionRequest, cancellationToken).ConfigureAwait(false);
+            _logger.LogDebug("WebSocket auth response: {response}", Newtonsoft.Json.JsonConvert.SerializeObject(response, Newtonsoft.Json.Formatting.Indented));
             return JsonSerializer.Serialize(response);
         }
         catch (Exception ex)

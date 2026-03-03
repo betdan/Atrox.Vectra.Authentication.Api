@@ -1,6 +1,7 @@
 using Atrox.Vectra.Authentication.Api.Application.Contracts.Services;
 using Atrox.Vectra.Authentication.Api.Business.Models.Auth;
 using Grpc.Core;
+using Newtonsoft.Json;
 
 namespace Atrox.Vectra.Authentication.Api.Transports.Grpc;
 
@@ -13,8 +14,9 @@ public class AuthenticationExecutionGrpcService(IExecutionService executionServi
     public override async Task<AuthResponseGrpc> Authenticate(AuthRequestGrpc request, ServerCallContext context)
     {
         _logger.LogInformation("gRPC authentication request received.");
+        _logger.LogDebug("gRPC auth request: {request}", JsonConvert.SerializeObject(request, Formatting.Indented));
         var response = await _executionService.AuthenticateAsync(new AuthRequest { ApiKey = request.ApiKey }, context.CancellationToken).ConfigureAwait(false);
-        return new AuthResponseGrpc
+        var grpcResponse = new AuthResponseGrpc
         {
             Success = response.Success,
             AccessToken = response.AccessToken ?? string.Empty,
@@ -22,10 +24,13 @@ public class AuthenticationExecutionGrpcService(IExecutionService executionServi
             ExpiresAtUtc = response.ExpiresAtUtc == default ? string.Empty : response.ExpiresAtUtc.ToString("O"),
             Error = response.Error ?? string.Empty
         };
+        _logger.LogDebug("gRPC auth response: {response}", JsonConvert.SerializeObject(grpcResponse, Formatting.Indented));
+        return grpcResponse;
     }
 
     public override Task<JwksResponseGrpc> GetJwks(JwksRequestGrpc request, ServerCallContext context)
     {
+        _logger.LogDebug("gRPC JWKS request: {request}", JsonConvert.SerializeObject(request, Formatting.Indented));
         var jwks = _executionService.GetJwks();
         var response = new JwksResponseGrpc();
         response.Keys.AddRange(jwks.Keys.Select(key => new JwksKeyGrpc
@@ -37,6 +42,7 @@ public class AuthenticationExecutionGrpcService(IExecutionService executionServi
             N = key.N,
             E = key.E
         }));
+        _logger.LogDebug("gRPC JWKS response: {response}", JsonConvert.SerializeObject(response, Formatting.Indented));
         return Task.FromResult(response);
     }
 }
